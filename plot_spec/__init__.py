@@ -59,14 +59,14 @@ def plot(spectra: Tensor, sources_or_subtitles: list[FeatureExtractor | str], su
     plt.show()
 
 
-def plot_lines(spec_0: Tensor, spec_1: Tensor, idx: int, dim=1) -> None:
-    line_0 = spec_0[:, :, idx].squeeze() if dim == 1 else spec_0[:, idx, :].squeeze()
-    line_1 = spec_1[:, :, idx].squeeze() if dim == 1 else spec_1[:, idx, :].squeeze()
-    x_vals = [x for x in range(line_0.shape[0])]
+def plot_lines(specs: list[Tensor], idx: int, dim=1) -> None:
+    lines = [spec[:, :, idx].squeeze() if dim == 1 else spec[:, idx, :].squeeze() for spec in specs]
+    x_vals = [x for x in range(lines[0].shape[0])]
 
     plt.title(f"Spectrum column {idx}")
-    plt.plot(x_vals, line_0, label="spec_0")
-    plt.plot(x_vals, line_1, label="spec_1")
+    for line, line_idx in enumerate(lines):
+        plt.plot(x_vals, line, label=f"spec_{line_idx}")
+
     plt.plot(x_vals, np.zeros_like(x_vals), label="ref")
     plt.legend()
     plt.show()
@@ -82,3 +82,27 @@ def plot_spec_by_lines(spec: Tensor) -> None:
         plt.title(f"Spectrum column {idx}")
         plt.plot(x_vals, line)
         plt.show()
+
+
+def plot_with_time_domain(spectrum: Tensor, wav: Tensor, sample_rate: int, title: str) -> None:
+    # Config
+    fig, ax = plt.subplots(nrows=2)
+
+    fig.suptitle(title)
+    fig.tight_layout()
+    fig.set_figheight(8)
+
+    # Spectrogram
+    ax[0].imshow(spectrum.squeeze(), origin='lower', aspect='auto')
+    ax[0].set_xlabel("STFT Window")
+    ax[0].set_ylabel("Freq Band")
+
+    # Waveform
+    audio = wav.squeeze(0)
+    time = np.linspace(0, len(audio) / sample_rate, num=len(audio))
+    ax[1].plot(time, audio)
+    ax[1].set_xlabel("Time")
+    ax[1].set_ylabel("Amplitude")
+
+    # Display the plots
+    plt.show()
