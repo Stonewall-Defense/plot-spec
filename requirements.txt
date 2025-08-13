@@ -1,3 +1,5 @@
 matplotlib==3.10.0
 numpy==1.26.4
 torch==2.5.1
+
+audiofeatures==0.2.0

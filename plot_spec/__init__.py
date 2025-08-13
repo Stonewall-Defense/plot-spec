@@ -13,7 +13,7 @@ from torch import Tensor
 ###############################################################################
 # Certus Imports
 ###############################################################################
-from audiofeatures import FeatureExtractor
+from audiofeatures import FeatureChannel
 
 
 ###############################################################################
@@ -33,7 +33,7 @@ def _calc_plot_shape(num_spectra: int) -> tuple[int, int]:
 ###############################################################################
 # Matplotlib
 ###############################################################################
-def plot(spectra: Tensor, sources_or_subtitles: list[FeatureExtractor | str], sup_title: str) -> None:
+def plot(spectra: Tensor, sources_or_subtitles: list[FeatureChannel | str], sup_title: str) -> None:
     num_spectra = len(spectra)
     nrows, ncols = _calc_plot_shape(num_spectra)
     has_subtitles = isinstance(sources_or_subtitles[0], str)
