@@ -84,6 +84,16 @@ def plot_spec_by_lines(spec: Tensor) -> None:
         plt.show()
 
 
+def plot_time_domain(wav: Tensor, sample_rate: int, title: str) -> None:
+    td = wav.squeeze(0)
+    time = np.linspace(0, len(td) / sample_rate, num=len(td))
+    plt.plot(time, td)
+    plt.title(title)
+    plt.xlabel("Time")
+    plt.ylabel("Amplitude")
+    plt.show()
+
+
 def plot_with_time_domain(spectrum: Tensor, wav: Tensor, sample_rate: int, title: str) -> None:
     # Config
     fig, ax = plt.subplots(nrows=2)
