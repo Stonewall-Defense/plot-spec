@@ -33,10 +33,9 @@ def _calc_plot_shape(num_spectra: int) -> tuple[int, int]:
 ###############################################################################
 # Matplotlib
 ###############################################################################
-def plot(spectra: Tensor, sources_or_subtitles: list[FeatureChannel | str], sup_title: str) -> None:
+def plot(spectra: Tensor | list, sources_or_subtitles: list[FeatureChannel | str], sup_title: str) -> None:
     num_spectra = len(spectra)
     nrows, ncols = _calc_plot_shape(num_spectra)
-    has_subtitles = isinstance(sources_or_subtitles[0], str)
 
     fig, axs = plt.subplots(nrows=nrows, ncols=ncols)
     fig.suptitle(sup_title)
@@ -48,10 +47,11 @@ def plot(spectra: Tensor, sources_or_subtitles: list[FeatureChannel | str], sup_
         sub_p = axs[row][col] if ncols > 1 else axs[idx] if nrows > 1 else axs
         sub_p.imshow(spectra[idx].squeeze(0), origin='lower', aspect='auto')
 
-        if has_subtitles:
-            sub_p.set_title(sources_or_subtitles[idx])
+        st = sources_or_subtitles[idx]
+        if isinstance(st, str):
+            sub_p.set_title(st)
         else:
-            sub_p.set_title(f"{sources_or_subtitles[idx].get_spec_type().value}/{idx}")
+            sub_p.set_title(f"{st.get_spec_type().value}/{idx}")
 
     fig.tight_layout()
     fig.set_figwidth(ncols * 5)
