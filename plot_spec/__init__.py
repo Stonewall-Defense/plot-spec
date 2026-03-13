@@ -33,7 +33,7 @@ def _calc_plot_shape(num_spectra: int) -> tuple[int, int]:
 ###############################################################################
 # Matplotlib
 ###############################################################################
-def plot(spectra: Tensor | list, sources_or_subtitles: list[FeatureChannel | str], sup_title: str) -> None:
+def plot(spectra: Tensor | list, sources_or_subtitles: list[FeatureChannel] | list[str], sup_title: str) -> None:
     num_spectra = len(spectra)
     nrows, ncols = _calc_plot_shape(num_spectra)
 
