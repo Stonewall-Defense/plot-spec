@@ -3,12 +3,13 @@
 WIP
 
 ## Prerequisites
+
 - Python 3.11 runtime
 - Pip for package installation
 
 ## Installation
 
-Install the dependencies into the environment with [pip](https://pypi.org/project/pip/): 
+Install the dependencies into the environment with [pip](https://pypi.org/project/pip/):
 
 ```bash
 pip install -r requirements.txt
@@ -20,14 +21,14 @@ Then install this package:
 pip install .
 ```
 
-# Versioning
+## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/Stonewall-Defense/team-ml-utils/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/Stonewall-Defense/team-ml-utils/tags).
 
-# Authors
+## Authors
 
-* **Ryan Quinn** - *Initial work*
+- **Ryan Quinn** - *Initial work*
 
-# License
+## License
 
 MIT.
