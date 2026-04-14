@@ -1,6 +1,6 @@
 [project]
 name = "plot_spec"
-version = "v0.3.1"
+version = "v0.3.2"
 
 [build-system]
 requires = ["setuptools"]
