@@ -1,6 +1,25 @@
 [project]
 name = "plot_spec"
-version = "v0.3.2"
+version = "v0.4.0"
+authors = [
+  { name="Ryan Quinn", email="ryan.quinn@certusinnovations.com" },
+]
+description = "Simple tools for plotting spectrograms and audio data"
+readme = "README.md"
+requires-python = ">=3.12"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+]
+license = "MIT"
+license-files = ["LICENSE*"]
+
+[project.urls]
+Homepage = "https://github.com/Stonewall-Defense/plot-spec"
 
 [build-system]
 requires = ["setuptools"]

@@ -1,6 +1,6 @@
 # Plot Spec
 
-WIP
+Simple tools for plotting spectrograms and audio data.
 
 ## Prerequisites
 
@@ -23,11 +23,11 @@ pip install .
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/Stonewall-Defense/team-ml-utils/tags).
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/Stonewall-Defense/plot-spec/tags).
 
 ## Authors
 
-- **Ryan Quinn** - *Initial work*
+- **Ryan Quinn** - _Initial work_
 
 ## License
 

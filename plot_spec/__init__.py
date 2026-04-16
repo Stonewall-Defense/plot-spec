@@ -10,11 +10,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from torch import Tensor
 
-###############################################################################
-# Certus Imports
-###############################################################################
-from audiofeatures import FeatureChannel
-
 
 ###############################################################################
 # Helpers
@@ -33,7 +28,7 @@ def _calc_plot_shape(num_spectra: int) -> tuple[int, int]:
 ###############################################################################
 # Matplotlib
 ###############################################################################
-def plot(spectra: Tensor | list, sources_or_subtitles: list[FeatureChannel] | list[str], sup_title: str) -> None:
+def plot(spectra: Tensor, sources_or_subtitles: list[str], sup_title: str) -> None:
     num_spectra = len(spectra)
     nrows, ncols = _calc_plot_shape(num_spectra)
 
@@ -57,31 +52,6 @@ def plot(spectra: Tensor | list, sources_or_subtitles: list[FeatureChannel] | li
     fig.set_figwidth(ncols * 5)
     fig.set_figheight(nrows * 3)
     plt.show()
-
-
-def plot_lines(specs: list[Tensor], idx: int, dim=1) -> None:
-    lines = [spec[:, :, idx].squeeze() if dim == 1 else spec[:, idx, :].squeeze() for spec in specs]
-    x_vals = [x for x in range(lines[0].shape[0])]
-
-    plt.title(f"Spectrum column {idx}")
-    for line, line_idx in enumerate(lines):
-        plt.plot(x_vals, line, label=f"spec_{line_idx}")
-
-    plt.plot(x_vals, np.zeros_like(x_vals), label="ref")
-    plt.legend()
-    plt.show()
-
-
-def plot_spec_by_lines(spec: Tensor) -> None:
-    _, ht, wd = spec.shape
-    x_vals = [x for x in range(ht)]
-
-    for idx in range(wd):
-        line = spec[:, :, idx].squeeze()
-
-        plt.title(f"Spectrum column {idx}")
-        plt.plot(x_vals, line)
-        plt.show()
 
 
 def plot_time_domain(wav: Tensor, sample_rate: int, title: str) -> None:
