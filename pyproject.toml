@@ -1,5 +1,5 @@
 [project]
-name = "plot_spec"
+name = "audio_tensor_plotter"
 version = "v0.4.0"
 authors = [
   { name="Ryan Quinn", email="ryan.quinn@certusinnovations.com" },
@@ -26,4 +26,4 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-include = ["plot_spec*"]
+include = ["audio_tensor_plotter*"]

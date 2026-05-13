@@ -1,4 +1,4 @@
-# Plot Spec
+# Audio Tensor Plotter
 
 Simple tools for plotting spectrograms and audio data.
 
