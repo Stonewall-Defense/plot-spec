@@ -21,6 +21,21 @@ Then install this package:
 pip install .
 ```
 
+## Usage
+
+Best used with the [`AudioMlSpecTools`](https://pypi.org/project/AudioMlSpecTools/), also from Certus Innovations:
+
+```python
+CHANNELS = [
+    FeatureChannel(SAMPLE_RATE, n_fft=N_FFT, hop_length=HOP_LEN, n_filters=N_MELS, is_logarithmic=True, is_mel=True),
+]
+FEATURE_SOURCE = FeatureSource(CHANNELS)
+AUDIO = load_wav("fq_example_filename.wav", target_sr=SAMPLE_RATE).squeeze()
+
+specs = FEATURE_SOURCE.forward(AUDIO)
+plot_with_time_domain(specs, AUDIO, SAMPLE_RATE, "Plotting Example")
+```
+
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/Stonewall-Defense/plot-spec/tags).

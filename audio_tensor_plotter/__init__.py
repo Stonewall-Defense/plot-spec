@@ -66,7 +66,9 @@ def plot_time_domain(wav: Tensor, sample_rate: int, title: str) -> None:
 
 def plot_with_time_domain(spectrum: Tensor, wav: Tensor, sample_rate: int, title: str) -> None:
     # Config
-    n_chan = spectrum.shape[0]
+    _spec = spectrum.squeeze()
+    has_channels = len(_spec.shape) == 3
+    n_chan = _spec.shape[0] if has_channels else 1
     fig, ax = plt.subplots(nrows=n_chan + 1)
 
     fig.suptitle(title)
@@ -75,7 +77,8 @@ def plot_with_time_domain(spectrum: Tensor, wav: Tensor, sample_rate: int, title
 
     # Spectrogram
     for idx in range(n_chan):
-        ax[idx].imshow(spectrum[idx, :, :].squeeze(), origin='lower', aspect='auto')
+        _chan_spec = (_spec[idx, :, :] if has_channels else _spec).squeeze()
+        ax[idx].imshow(_chan_spec, origin='lower', aspect='auto')
         ax[idx].set_xlabel("STFT Window")
         ax[idx].set_ylabel("Freq Band")
 
